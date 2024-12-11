@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <!-- This file does not contain a robot description, only useful  -->
+    <!-- This file does not contain a robot description, only useful properties and math -->
 
     <!-- Specify UMA brand colors -->
     <material name="uma_blue_dark">
@@ -41,7 +41,6 @@
     </material>
 
     <!-- Specify basic inertial matrixes calculation -->
-
     <xacro:macro name="inertial_sphere" params="mass radius *origin">
         <inertial>
             <xacro:insert_block name="origin"/>
@@ -52,7 +51,6 @@
         </inertial>
     </xacro:macro>  
 
-
     <xacro:macro name="inertial_box" params="mass x y z *origin">
         <inertial>
             <xacro:insert_block name="origin"/>
@@ -62,7 +60,6 @@
                     izz="${(1/12) * mass * (x*x+y*y)}" />
         </inertial>
     </xacro:macro>
-
 
     <xacro:macro name="inertial_cylinder" params="mass length radius *origin">
         <inertial>

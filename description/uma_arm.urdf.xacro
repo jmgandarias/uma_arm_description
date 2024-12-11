@@ -1,117 +1,112 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="uma_arm">
 
-    <!-- Include include.xacro -->
-    <xacro:include filename="include.xacro" />
+    <!-- Include utils.xacro -->
+    <xacro:include filename="utils.xacro" />
+
+    <!-- Include parameters.xacro -->
+    <xacro:include filename="parameters.xacro" />
 
     <!-- Create the empty world link -->
     <link name="world"></link>
 
     <!-- Fixed joint from world to base link -->
     <joint name="base_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <parent link="world"/>
-        <child link="base_link"/>        
+        <origin xyz="0 0 ${base_length/2}" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="base_link" />
     </joint>
 
-    <!-- base_link is a box-->
-    <xacro:property name="base_length" value="0.05" />
-    <xacro:property name="base_width" value="0.1" />
     <link name="base_link">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <box size="${base_length} ${base_width} ${base_width}" />
+                <box size="${base_width} ${base_length} ${base_length}" />
             </geometry>
-            <material name="uma_blue_light"/>
+            <material name="uma_blue_dark" />
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <box size="${base_length} ${base_width} ${base_width}" />
+                <box size="${base_width} ${base_length} ${base_length}" />
             </geometry>
         </collision>
-        <xacro:inertial_box mass="0.5" x="${base_length}" y="${base_width}" z="${base_width}">
-            <origin xyz="${base_length/2} 0 0" rpy="0 ${pi/2} 0"/>
+        <xacro:inertial_box mass="${base_mass}" x="${base_width}" y="${base_length}"
+            z="${base_length}">
+            <origin xyz="${base_width/2} ${base_length/2} ${base_length/2}" rpy="0 ${pi/2} 0" />
         </xacro:inertial_box>
     </link>
 
-
     <!-- joint_1 describes the rotation of the joint_1 of the arm -->
     <!-- - The axis of rotation is -1 in Y, so that positive is "up" -->
-    <!-- - There's no upper or lower limits -->
-     <!-- - The maximum velocity is set to 21.9 rad/s (the maximum motors velocity without load: 210rpm) -->
-      <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
+    <!-- - There's no upper or lower position limits -->
     <joint name="joint_1" type="continuous">
-        <origin xyz="0 0 ${base_length}" rpy="0 0 0"/>
-        <parent link="base_link"/>
-        <child link="link_1"/>
-        <limit velocity="21.9" effort="0.98"/> 
+        <origin xyz="${base_width/2 + link_1_width/2} 0 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="link_1" />
+        <limit velocity="${joint_1_velocity}" effort="${joint_1_effort}" />
     </joint>
 
-
     <!-- link_1 describes the link_1 of the arm -->
-    <xacro:property name="link_1_length" value="0.15" />
-    <xacro:property name="link_1_width" value="0.05" />
     <link name="link_1">
         <visual>
-            <origin xyz="${link_1_length/2} 0 0" rpy="0 ${pi/2} 0"/>
-            <geometry>                
+            <origin xyz="0 0 ${link_1_length/2}" rpy="0 ${pi/2} 0" />
+            <geometry>
                 <box size="${link_1_length} ${link_1_width} ${link_1_width}" />
             </geometry>
             <material name="uma_blue_light" />
         </visual>
         <collision>
-            <origin xyz="${link_1_length/2} 0 0" rpy="0 ${pi/2} 0"/>
+            <origin xyz="0 0 ${link_1_length/2}" rpy="0 ${pi/2} 0" />
             <geometry>
                 <box size="${link_1_length} ${link_1_width} ${link_1_width}" />
             </geometry>
         </collision>
-        <xacro:inertial_box mass="0.5" x="${link_1_length}" y="${link_1_width}" z="${link_1_width}">
-            <origin xyz="${link_1_length/2} 0 0" rpy="0 ${pi/2} 0"/>
+        <xacro:inertial_box mass="${link1_mass}" x="${link_1_length}" y="${link_1_width}"
+            z="${link_1_width}">
+            <origin xyz="${link_1_length/2} 0 0" rpy="0 ${pi/2} 0" />
         </xacro:inertial_box>
     </link>
 
     <!-- joint_2 describes the rotation of the joint_2 of the arm -->
     <!-- - The axis of rotation is -1 in Y, so that positive is "up" -->
     <!-- - There's no upper or lower limits -->
-     <!-- - The maximum velocity is set to 21.9 rad/s (the maximum motors velocity without load: 210rpm) -->
-      <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
-      <joint name="joint_2" type="continuous">
-        <origin xyz="0 0 ${link_1_length}" rpy="0 0 0"/>
-        <parent link="link_1"/>
-        <child link="link_2"/>
-        <limit velocity="21.9" effort="0.98"/> 
+    <!-- - The maximum velocity is set to 21.9 rad/s (the maximum motors velocity without load:
+    210rpm) -->
+    <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
+    <joint name="joint_2" type="continuous">
+        <origin xyz="${link_1_width/2 + link_2_width/2} 0 ${link_1_length}" rpy="0 0 0" />
+        <parent link="link_1" />
+        <child link="link_2" />
+        <limit velocity="${joint_2_velocity}" effort="${joint_2_effort}" />
     </joint>
 
-
     <!-- link_2 describes the link_2 of the arm -->
-    <xacro:property name="link_2_length" value="0.15" />
-    <xacro:property name="link_2_width" value="0.05" />
     <link name="link_2">
         <visual>
-            <origin xyz="${link_2_length/2} 0 0" rpy="0 ${pi/2} 0"/>
-            <geometry>                
+            <origin xyz="0 0 ${link_2_length/2}" rpy="0 ${pi/2} 0" />
+            <geometry>
                 <box size="${link_2_length} ${link_2_width} ${link_2_width}" />
             </geometry>
-            <material name="uma_blue_light" />
+            <material name="uma_pink" />
         </visual>
         <collision>
-            <origin xyz="${link_2_length/2} 0 0" rpy="0 ${pi/2} 0"/>
+            <origin xyz="0 0 ${link_2_length/2}" rpy="0 ${pi/2} 0" />
             <geometry>
                 <box size="${link_2_length} ${link_2_width} ${link_2_width}" />
             </geometry>
         </collision>
-        <xacro:inertial_box mass="0.5" x="${link_2_length}" y="${link_2_width}" z="${link_2_width}">
-            <origin xyz="${link_2_length/2} 0 0" rpy="0 ${pi/2} 0"/>
+        <xacro:inertial_box mass="${link2_mass}" x="${link_2_length}" y="${link_2_width}"
+            z="${link_2_width}">
+            <origin xyz="${link_2_length/2} 0 0" rpy="0 ${pi/2} 0" />
         </xacro:inertial_box>
     </link>
 
     <!-- Fixed joint from joint_2 to joint_EE -->
     <joint name="joint_EE" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <parent link="link_2"/>     
-        <child link="link_EE"/> 
+        <origin xyz="0 0 ${link_2_length}" rpy="0 0 0" />
+        <parent link="link_2" />
+        <child link="link_EE" />
     </joint>
 
     <!-- Create the empty world link -->

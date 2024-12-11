@@ -1,1 +1,1 @@
-Repo with the description package og the UMA arm
+Repo with the description package of the UMA arm

@@ -11,11 +11,9 @@ def generate_launch_description():
     pkg_name = 'uma_arm_description'
     file_subpath = 'description/uma_arm.urdf.xacro'
 
-
     # Use xacro to process the file
     xacro_file = os.path.join(get_package_share_directory(pkg_name),file_subpath)
     robot_description_raw = xacro.process_file(xacro_file).toxml()
-
 
     # Configure the node
     node_robot_state_publisher = Node(
@@ -24,7 +22,6 @@ def generate_launch_description():
         output='screen',
         parameters=[{'robot_description': robot_description_raw}] # add other parameters here if required
     )
-
 
     # Run the node
     return LaunchDescription([
