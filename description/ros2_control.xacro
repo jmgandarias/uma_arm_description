@@ -31,8 +31,11 @@
         </joint>
     </ros2_control>
 
-
     <!-- Gazebo plugin that tells Gazebo to use ros2 control -->
-
+    <gazebo>
+        <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+            <parameters>$(find uma_arm_description)/config/controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
 
 </robot>

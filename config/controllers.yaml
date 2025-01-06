@@ -1,0 +1,28 @@
+# First, we define the controller manager parameters: ros parameters, controllers, and broadcasters
+controller_manager: 
+  ros__parameters:
+    update_rate: 1000
+    use_sim_time: true # set to true when using Gazebo. This is 
+
+  effort_controller:
+    type: effort_controllers/JointGroupEffortController
+
+  joint_state_broadcaster:
+    type: joint_state_broadcaster/JointStateBroadcaster
+
+  # EE_ft_broad:
+  #   type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+# Here, we define the controllers parameters (if any)
+effort_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+
+# Here, we define the broadcaster parameters (if any)
+# joint_broad:
+#   ros__parameters:
+
+# EE_ft_broad:
+#   ros__parameters:
