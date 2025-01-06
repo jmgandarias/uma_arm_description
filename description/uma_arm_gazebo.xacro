@@ -44,7 +44,8 @@
     <!-- You'll probably want to add damping to the joints to stop them it flopping around. 
             e.g. <dynamics damping="10.0" friction="10.0"/> -->
     <!-- Here's an example message to publish to test it:
-            ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{header: {frame_id: world}, joint_names: [joint_1, joint_2], points: [  {positions: {0.8,0.6}} ]}' -->
+            ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{header: {frame_id:
+    world}, joint_names: [joint_1, joint_2], points: [  {positions: {0.8,0.6}} ]}' -->
     <gazebo>
         <plugin name="gazebo_ros_joint_pose_trajectory"
             filename="libgazebo_ros_joint_pose_trajectory.so">

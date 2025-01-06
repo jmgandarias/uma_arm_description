@@ -19,3 +19,10 @@ Set "Joint Trajectory"
 ```
 ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{header: {frame_id: world}, joint_names: [joint_1, joint_2], points: [  {positions: {0.8,0.6}} ]}'
 ```
+
+## Upgrade Gazebo to use ros2 control
+
+### Install
+```
+sudo  apt install ros-foxy-ros2-control ros-foxy-ros2-controllers ros-foxy-gazebo-ros2-control
+```
