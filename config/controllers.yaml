@@ -4,14 +4,14 @@ controller_manager:
     update_rate: 1000
     use_sim_time: true # set to true when using Gazebo. This is 
 
-  effort_controller:
-    type: effort_controllers/JointGroupEffortController
+    effort_controller:
+      type: effort_controllers/JointGroupEffortController
 
-  joint_state_broadcaster:
-    type: joint_state_broadcaster/JointStateBroadcaster
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
 
-  # EE_ft_broad:
-  #   type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+    # EE_ft_broad:
+    #   type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
 
 # Here, we define the controllers parameters (if any)
 effort_controller:

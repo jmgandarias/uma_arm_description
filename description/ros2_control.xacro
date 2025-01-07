@@ -32,9 +32,44 @@
     </ros2_control>
 
     <!-- Gazebo plugin that tells Gazebo to use ros2 control -->
+    <!-- Specify UMA brand colors for Gazebo -->
+    <!-- Gazebo doesn't parse URDF colors, so we need to define them here again -->
+    <material name="gazebo_uma_blue_dark">
+        <color rgba="0 0.18 0.36 1" />
+    </material>
+
+    <material name="gazebo_uma_blue_light">
+        <color rgba="0.168 0.569 0.816 1" />
+    </material>
+
+    <material name="gazebo_uma_pink">
+        <color rgba="0.8 0 0.4 1" />
+    </material>
+
+    <gazebo reference='base_link'>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference='link_1'>
+        <material>Gazebo/Turquoise </material>
+    </gazebo>
+
+    <gazebo reference='link_2'>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
     <gazebo>
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
             <parameters>$(find uma_arm_description)/config/controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="gazebo_ros_joint_state_publisher"
+            filename="libgazebo_ros_joint_state_publisher.so">
+            <update_rate>20</update_rate>
+            <joint_name>joint_1</joint_name>
+            <joint_name>joint_2</joint_name>
         </plugin>
     </gazebo>
 

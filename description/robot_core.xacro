@@ -45,7 +45,7 @@
         <parent link="base_link" />
         <child link="link_1" />
         <limit lower="0" upper="${2*pi}" velocity="${joint_1_velocity}" effort="${joint_1_effort}" />
-        <dynamics damping="1.0" friction="1.0"/>
+        <!-- <dynamics damping="1.0" friction="1.0"/> -->
     </joint>
 
     <!-- link_1 describes the link_1 of the arm -->
@@ -80,7 +80,7 @@
         <parent link="link_1" />
         <child link="link_2" />
         <limit lower="0" upper="${2*pi}" velocity="${joint_2_velocity}" effort="${joint_2_effort}" />
-        <dynamics damping="1.0" friction="1.0"/>
+        <!-- <dynamics damping="1.0" friction="1.0"/> -->
     </joint>
 
     <!-- link_2 describes the link_2 of the arm -->
