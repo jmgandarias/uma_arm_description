@@ -44,7 +44,7 @@
         <origin xyz="${base_width/2 + link_1_width/2} 0 0" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="link_1" />
-        <limit lower="0" upper="${2*pi}" velocity="${joint_1_velocity}" effort="${joint_1_effort}" />
+        <limit lower="${joint_1_min_pos}" upper="${joint_1_max_pos}" velocity="${joint_1_velocity}" effort="${joint_1_effort}" />
         <!-- <dynamics damping="1.0" friction="1.0"/> -->
     </joint>
 
@@ -79,7 +79,7 @@
         <origin xyz="${link_1_width/2 + link_2_width/2} 0 ${link_1_length}" rpy="0 0 0" />
         <parent link="link_1" />
         <child link="link_2" />
-        <limit lower="0" upper="${2*pi}" velocity="${joint_2_velocity}" effort="${joint_2_effort}" />
+        <limit lower="${joint_2_min_pos}" upper="${joint_2_max_pos}" velocity="${joint_2_velocity}" effort="${joint_2_effort}" />
         <!-- <dynamics damping="1.0" friction="1.0"/> -->
     </joint>
 

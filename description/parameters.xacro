@@ -14,6 +14,8 @@
     <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
     <xacro:property name="joint_1_velocity" value="21.9" />
     <xacro:property name="joint_1_effort" value="0.98" />
+    <xacro:property name="joint_1_min_pos" value="${-pi}" />
+    <xacro:property name="joint_1_max_pos" value="${pi}" />
 
     <!-- joint_2 parameters -->
     <!-- - The maximum velocity is set to 21.9 rad/s (the maximum motors velocity without load:
@@ -21,6 +23,8 @@
     <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
     <xacro:property name="joint_2_velocity" value="21.9" />
     <xacro:property name="joint_2_effort" value="0.98" />
+    <xacro:property name="joint_2_min_pos" value="${-pi}" />
+    <xacro:property name="joint_2_max_pos" value="${pi}" />
 
     <!-- link_1 parameters -->
     <xacro:property name="link_1_length" value="0.15" />
