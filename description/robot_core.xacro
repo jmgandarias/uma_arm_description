@@ -21,31 +21,31 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <box size="${base_width} ${base_length} ${base_length}" />
+                <box size="${base_width} ${base_width} ${base_length}" />
             </geometry>
             <material name="uma_blue_dark" />
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <box size="${base_width} ${base_length} ${base_length}" />
+                <box size="${base_width} ${base_width} ${base_length}" />
             </geometry>
         </collision>
-        <xacro:inertial_box mass="${base_mass}" x="${base_width}" y="${base_length}"
+        <xacro:inertial_box mass="${base_mass}" x="${base_width}" y="${base_width}"
             z="${base_length}">
-            <origin xyz="${base_width/2} ${base_length/2} ${base_length/2}" rpy="0 ${pi/2} 0" />
+            <origin xyz="${base_width/2} ${base_width/2} ${base_length/2}" rpy="0 ${pi/2} 0" />
         </xacro:inertial_box>
     </link>
 
     <!-- joint_1 describes the rotation of the joint_1 of the arm -->
     <!-- - The axis of rotation is -1 in Y, so that positive is "up" -->
     <!-- - There's no upper or lower position limits -->
-    <joint name="joint_1" type="revolute">
-        <origin xyz="${base_width/2 + link_1_width/2} 0 0" rpy="0 0 0" />
+    <joint name="joint_1" type="continuous">
+        <origin xyz="${base_width/2 + link_1_width/2} 0 ${base_length/2}" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="link_1" />
-        <limit lower="${joint_1_min_pos}" upper="${joint_1_max_pos}" velocity="${joint_1_velocity}" effort="${joint_1_effort}" />
-        <!-- <dynamics damping="1.0" friction="1.0"/> -->
+        <limit velocity="${joint_1_velocity}" effort="${joint_1_effort}" />
+        <dynamics damping="${joint_1_damping}"/>
     </joint>
 
     <!-- link_1 describes the link_1 of the arm -->
@@ -75,12 +75,12 @@
     <!-- - The maximum velocity is set to 21.9 rad/s (the maximum motors velocity without load:
     210rpm) -->
     <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
-    <joint name="joint_2" type="revolute">
+    <joint name="joint_2" type="continuous">
         <origin xyz="${link_1_width/2 + link_2_width/2} 0 ${link_1_length}" rpy="0 0 0" />
         <parent link="link_1" />
         <child link="link_2" />
-        <limit lower="${joint_2_min_pos}" upper="${joint_2_max_pos}" velocity="${joint_2_velocity}" effort="${joint_2_effort}" />
-        <!-- <dynamics damping="1.0" friction="1.0"/> -->
+        <limit velocity="${joint_2_velocity}" effort="${joint_2_effort}" />
+        <dynamics damping="${joint_1_damping}"/>
     </joint>
 
     <!-- link_2 describes the link_2 of the arm -->
