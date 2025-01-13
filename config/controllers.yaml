@@ -10,6 +10,9 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
+    ft_sensor_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
     # EE_ft_broad:
     #   type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
 
@@ -20,6 +23,12 @@ effort_controller:
       - joint_1
       - joint_2
 
+ft_sensor_broadcaster:
+  ros__parameters:
+    interface_names.force.x: ee_fts_sensor/force.x
+    interface_names.torque.z: ee_fts_sensor/torque.z
+    frame_id: link_EE
+  
 # Here, we define the broadcaster parameters (if any)
 # joint_broad:
 #   ros__parameters:

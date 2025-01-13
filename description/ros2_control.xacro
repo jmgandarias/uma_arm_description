@@ -9,14 +9,15 @@
 
         <!-- Here we include the joint_1 interface -->
         <joint name="joint_1">
-            <command_interface name="effort"> 
-                <!-- ROS uses SI units as standard, so an effort_controller connected to a rotary joint will output torque in Nm. -->
+            <command_interface name="effort">
+                <!-- ROS uses SI units as standard, so an effort_controller connected to a rotary
+                joint will output torque in Nm. -->
                 <param name="min">-0.98</param>
                 <param name="max">0.98</param>
             </command_interface>
             <state_interface name="position" />
             <state_interface name="velocity" />
-            <state_interface name="effort" />
+            <!-- <state_interface name="effort" /> -->
         </joint>
 
         <!-- Here we include the joint_2 interface -->
@@ -27,8 +28,16 @@
             </command_interface>
             <state_interface name="position" />
             <state_interface name="velocity" />
-            <state_interface name="effort" />
+            <!-- <state_interface name="effort" /> -->
         </joint>
+
+        <sensor name="ee_ft_sensor">
+            <state_interface name="force.x" />
+            <state_interface name="torque.z" />
+            <param name="frame_id">EE_link</param>
+            <!-- <param name="fx_range">100</param>
+            <param name="tz_range">15</param> -->
+        </sensor>
     </ros2_control>
 
     <!-- Gazebo plugin that tells Gazebo to use ros2 control -->
@@ -58,12 +67,34 @@
         <material>Gazebo/Purple</material>
     </gazebo>
 
+
+    <!-- BEGIN force/torque sensor -->
+    <gazebo reference="joint_EE">
+        <provideFeedback>true</provideFeedback>
+    </gazebo>
+    <!-- The ft_sensor plugin -->
+    <gazebo>
+        <plugin filename="libgazebo_ros_ft_sensor.so" name="ee_ft_sensor">
+            <updateRate>100.0</updateRate>
+            <topicName>ft_sensor_topic</topicName>
+            <jointName>joint_EE</jointName>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.003</stddev>
+                <!-- change this to simulate noise -->
+            </noise>
+        </plugin>
+    </gazebo>
+
+    <!-- ROS 2 Control plugin -->
     <gazebo>
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
             <parameters>$(find uma_arm_description)/config/controllers.yaml</parameters>
         </plugin>
     </gazebo>
 
+    <!-- Gazebo Joint State Publisher -->
     <gazebo>
         <plugin name="gazebo_ros_joint_state_publisher"
             filename="libgazebo_ros_joint_state_publisher.so">
@@ -72,5 +103,17 @@
             <joint_name>joint_2</joint_name>
         </plugin>
     </gazebo>
+
+
+    <!-- The ft_sensor plugin -->
+    <!-- <gazebo>
+        <plugin name="ee_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+            <update_rate>200</update_rate>
+            <topicName>ee_ft_sensor/wrench</topicName>
+            <jointName>joint_EE</jointName>
+            <gaussian_noise>0.001</gaussian_noise>
+        </plugin>
+    </gazebo> -->
+
 
 </robot>

@@ -14,7 +14,7 @@
     <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
     <xacro:property name="joint_1_velocity" value="1.0" />
     <xacro:property name="joint_1_effort" value="100" />
-    <xacro:property name="joint_1_damping" value="0.7" />
+    <xacro:property name="joint_1_damping" value="0.8" />
 
     <!-- <xacro:property name="joint_1_min_pos" value="${-pi}" />
     <xacro:property name="joint_1_max_pos" value="${pi}" /> -->
@@ -25,7 +25,7 @@
     <!-- The maximum torque is set to 0.98Nm (the maximum motor torque: 10 Kg.cm) -->
     <xacro:property name="joint_2_velocity" value="1" />
     <xacro:property name="joint_2_effort" value="100" />
-    <xacro:property name="joint_2_damping" value="0.7" />
+    <xacro:property name="joint_2_damping" value="0.8" />
     <!-- <xacro:property name="joint_2_min_pos" value="${-pi}" />
     <xacro:property name="joint_2_max_pos" value="${pi}" /> -->
 
