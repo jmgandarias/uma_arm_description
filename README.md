@@ -1,5 +1,14 @@
 Repo with the description package of the UMA arm
 
+
+Install depencies
+
+```bash
+sudo apt install ros-<distro>-xacro
+sudo apt install ros-<distro>-gazebo-ros-pkgs
+sudo  apt install ros-<distro>-ros2-control ros-<distro>-ros2-controllers ros-<distro>-gazebo-ros2-control
+```
+
 To launch it:
 
 Launch the model only
@@ -22,10 +31,6 @@ ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{h
 
 ## Upgrade Gazebo to use ros2 control
 
-### Install
-```
-sudo  apt install ros-foxy-ros2-control ros-foxy-ros2-controllers ros-foxy-gazebo-ros2-control
-```
 
 Launch
 ```
