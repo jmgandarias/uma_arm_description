@@ -38,3 +38,4 @@ ros2 launch uma_arm_description uma_arm.launch.py
 ros2 launch uma_arm_description uma_arm_sim.launch.py 
 ros2 run controller_manager spawner.py effort_controller
 ```
+

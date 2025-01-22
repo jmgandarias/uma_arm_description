@@ -31,13 +31,15 @@
             <!-- <state_interface name="effort" /> -->
         </joint>
 
+        <!-- 
         <sensor name="ee_ft_sensor">
             <state_interface name="force.x" />
             <state_interface name="torque.z" />
             <param name="frame_id">EE_link</param>
-            <!-- <param name="fx_range">100</param>
-            <param name="tz_range">15</param> -->
-        </sensor>
+            <param name="fx_range">100</param>
+            <param name="tz_range">15</param>
+        </sensor> 
+        -->
     </ros2_control>
 
     <!-- Gazebo plugin that tells Gazebo to use ros2 control -->
@@ -73,7 +75,7 @@
         <provideFeedback>true</provideFeedback>
     </gazebo>
     <!-- The ft_sensor plugin -->
-    <gazebo>
+    <!-- <gazebo>
         <plugin filename="libgazebo_ros_ft_sensor.so" name="ee_ft_sensor">
             <updateRate>100.0</updateRate>
             <topicName>ft_sensor_topic</topicName>
@@ -82,10 +84,9 @@
                 <type>gaussian</type>
                 <mean>0.0</mean>
                 <stddev>0.003</stddev>
-                <!-- change this to simulate noise -->
             </noise>
         </plugin>
-    </gazebo>
+    </gazebo> -->
 
     <!-- ROS 2 Control plugin -->
     <gazebo>
