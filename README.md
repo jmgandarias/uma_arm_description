@@ -36,6 +36,36 @@ Launch
 ```
 ros2 launch uma_arm_description uma_arm.launch.py 
 ros2 launch uma_arm_description uma_arm_sim.launch.py 
-ros2 run controller_manager spawner.py effort_controller
+ros2 run controller_manager spawner.py effort_controller  [THIS IS FOR ROS2 VERSIONS BEFORE HUMBLE]
+ros2 run controller_manager spawner effort_controller
 ```
+
+
+
+## Launch ROS2 Control Demos
+```
+cd <YOUR_ROS_WS/src>
+git clone https://github.com/ros-controls/ros2_control_demos -b humble
+cd ..
+rosdep update --rosdistro=$ROS_DISTRO
+sudo apt-get update
+sudo rosdep install --from-paths ./ -i -y --rosdistro ${ROS_DISTRO}
+rosdep update
+```
+
+We need to delete example 12 as it has some compilation errors in ros2 humble
+```
+cd src
+sudo rm -r example_12
+```
+
+Now we can compile
+```
+cd ..
+cb
+```
+
+## show EE trail in Rviz
+- Go to RobotModel>Links>tool0 (or the link that refers to the EE)
+- Habilitate Show Trail
 
