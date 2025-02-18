@@ -33,8 +33,16 @@ def generate_launch_description():
             description="Whether to execute gzclient"
         )
     )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "gui",
+            default_value="true",
+            description="Start RViz2 automatically with this launch file.",
+        )
+    )
 
-     # Initialize Arguments
+    # Initialize Arguments
+    gui = LaunchConfiguration("gui")
     use_simulator = LaunchConfiguration("use_simulator")
     headless = LaunchConfiguration("headless")
     
@@ -124,6 +132,7 @@ def generate_launch_description():
         name="rviz2",
         output="log",
         arguments=["-d", rviz_config_file],
+        condition=IfCondition(gui),
     )
     
     robot_controllers = PathJoinSubstitution(

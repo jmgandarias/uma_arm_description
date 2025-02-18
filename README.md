@@ -35,10 +35,14 @@ ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{h
 Launch
 ```
 ros2 launch uma_arm_description uma_arm_sim.launch.py 
-ros2 run controller_manager spawner.py effort_controller  [THIS IS FOR ROS2 VERSIONS BEFORE HUMBLE]
-ros2 run controller_manager spawner effort_controller
 ```
 
+Test publishing torques
+```
+ros2 topic pub /effort_controller/commands std_msgs/msg/Float64MultiArray "data:
+- 0
+- 10"
+```
 
 
 ## Launch ROS2 Control Demos
