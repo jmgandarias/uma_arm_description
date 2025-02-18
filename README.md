@@ -34,7 +34,6 @@ ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{h
 
 Launch
 ```
-ros2 launch uma_arm_description uma_arm.launch.py 
 ros2 launch uma_arm_description uma_arm_sim.launch.py 
 ros2 run controller_manager spawner.py effort_controller  [THIS IS FOR ROS2 VERSIONS BEFORE HUMBLE]
 ros2 run controller_manager spawner effort_controller
