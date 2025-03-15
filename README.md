@@ -4,9 +4,10 @@ Repo with the description package of the UMA arm
 Install depencies
 
 ```bash
-sudo apt install ros-<distro>-xacro
-sudo apt install ros-<distro>-gazebo-ros-pkgs
-sudo  apt install ros-<distro>-ros2-control ros-<distro>-ros2-controllers ros-<distro>-gazebo-ros2-control
+sudo apt install ros-${ROS_DISTRO}-xacro
+sudo apt install ros-${ROS_DISTRO}-gazebo-ros-pkgs
+sudo  apt install ros-${ROS_DISTRO}-ros2-control ros-${ROS_DISTRO}-ros2-controllers ros-${ROS_DISTRO}-gazebo-ros2-control
+sudo apt-get install -y ros-${ROS_DISTRO}-joint-state-publisher-gui ros-${ROS_DISTRO}-rviz2
 ```
 
 To launch it:
@@ -58,13 +59,13 @@ rosdep update
 
 We need to delete example 12 as it has some compilation errors in ros2 humble
 ```
-cd src
+cd src/ros2_control_demos
 sudo rm -r example_12
 ```
 
 Now we can compile
 ```
-cd ..
+cd ../..
 cb
 ```
 
