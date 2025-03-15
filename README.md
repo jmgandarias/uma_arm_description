@@ -69,6 +69,17 @@ cd ../..
 cb
 ```
 
+## Luanch demo 7
+In one terminal, run:
+```
+ros2 launch ros2_control_demo_example_7 r6bot_controller.launch.py
+```
+
+In another terminal, run:
+```
+ros2 launch ros2_control_demo_example_7 send_trajectory.launch.py
+```
+
 ## show EE trail in Rviz
 - Go to RobotModel>Links>tool0 (or the link that refers to the EE)
 - Habilitate Show Trail
