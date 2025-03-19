@@ -41,7 +41,7 @@
     <!-- - The axis of rotation is -1 in Y, so that positive is "up" -->
     <!-- - There's no upper or lower position limits -->
     <joint name="joint_1" type="continuous">
-        <origin xyz="${base_width/2 + link_1_width/2} 0 ${base_length/2}" rpy="0 0 0" />
+        <origin xyz="${base_width/2 + link_1_width/2} 0 ${base_length/2}" rpy="${-pi/2} 0 0" />
         <parent link="base_link" />
         <child link="link_1" />
         <limit velocity="${joint_1_velocity}" effort="${joint_1_effort}" />
