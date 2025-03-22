@@ -1,3 +1,6 @@
+#   Author: Juan M. Gandarias (http://jmgandarias.com)
+#   email: jmgandarias@uma.es
+
 cmake_minimum_required(VERSION 3.5)
 project(uma_arm_description)
 

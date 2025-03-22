@@ -4,7 +4,7 @@
   <name>uma_arm_description</name>
   <version>0.0.1</version>
   <description>Description package for the UMA 2R arm</description>
-  <maintainer email="jmgandarias@uma.es">Juanma Gandarias</maintainer>
+  <maintainer email="jmgandarias@uma.es">Juan M. Gandarias</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
