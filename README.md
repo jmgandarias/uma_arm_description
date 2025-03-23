@@ -12,15 +12,22 @@ sudo apt-get install -y ros-${ROS_DISTRO}-joint-state-publisher-gui ros-${ROS_DI
 
 To launch it:
 
-Launch the model only
+Launch the visualization only
 ```
-ros2 launch uma_arm_description uma_arm.launch.py 
+ros2 launch uma_arm_description uma_arm_visualization.launch.py
+```
+
+Run the joint_state_publisher_gui
+```
 ros2 run joint_state_publisher_gui joint_state_publisher_gui 
-rviz2
+```
+
+Run gazebo
+```
 ros2 launch gazebo_ros gazebo.launch.py 
 ```
 
-Launch the model in Gazebo
+Launch the whole model in Gazebo
 ```
 ros2 launch uma_arm_description uma_arm_sim.launch.py 
 ```
