@@ -30,14 +30,14 @@
     <xacro:property name="joint_2_max_pos" value="${pi}" /> -->
 
     <!-- link_1 parameters -->
-    <xacro:property name="link_1_length" value="0.9" />
+    <xacro:property name="link_1_length" value="1.0" />
     <xacro:property name="link_1_width" value="0.1" />
-    <xacro:property name="link1_mass" value="1" />
+    <xacro:property name="link1_mass" value="3.0" />
 
     <!-- link_2 parameters -->
-    <xacro:property name="link_2_length" value="0.9" />
+    <xacro:property name="link_2_length" value="0.6" />
     <xacro:property name="link_2_width" value="0.1" />
-    <xacro:property name="link2_mass" value="1" />
+    <xacro:property name="link2_mass" value="2.0" />
 
 
 </robot>
